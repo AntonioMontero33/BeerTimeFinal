@@ -6,93 +6,95 @@
 <div class="col-s-12">
 
 
-<form  action=""(ngSubmit)="agregar()">
+<form (ngSubmit)="crearProducto()" action="">
     <table class="col-s-12">
-
-       
 
         <tr>
             <td><label for="nombre">Nombre</label></td>
             <td><input type="text" 
-                id="nombre" 
+                id="txtnombre" 
                 placeholder="Nombre" 
                 name="nombreProducto"
-                [(ngModel)]="nombreProducto"
+                [value]="nuevoProducto.nombreProducto"
+                [(ngModel)]="nuevoProducto.nombreProducto"
                 ></td>
         </tr>
         <tr>
             <td><label for="mililitro">Mililitro</label></td>
             <td><input type="number" 
-                id="mililitro" 
+                id="txtmililitro" 
                 placeholder="militro" 
                 name="mililitros"
-                [(ngModel)]="mililitrosProducto"
+                [value]="nuevoProducto.mililitrosProducto"
+                [(ngModel)]="nuevoProducto.mililitrosProducto"
                 ></td>
         </tr>
 
         <tr>
             <td><label for="descripcion">Descripcion</label></td>
             <td><input type="text" 
-                id="descripcion" 
+                id="txtdescripcion" 
                 placeholder="descripcion" 
                 name="descripcion"
-                [(ngModel)]="descripcionProducto"
+                [value]="nuevoProducto.descripcionProducto"
+                [(ngModel)]="nuevoProducto.descripcionProducto"
                 ></td>
         </tr>
 
         <tr>
             <td><label for="volumenalcohol">Volumen Alcohol</label></td>
             <td><input type="number" 
-                id="volumenalcohol" 
+                id="txtvolumenalcohol" 
                 placeholder="volumenalcohol" 
                 name="volumenalcohol"
-                [(ngModel)]="volalcoholProducto"
+                [value]="nuevoProducto.volalcoholProducto"
+                [(ngModel)]="nuevoProducto.volalcoholProducto"
                 ></td>
         </tr>
         <tr>
             <td><label for="imagen">Direccion Imagen</label></td>
             <td><input type="text" 
-                id="imagen" 
+                id="txtimagen" 
                 placeholder="imagen" 
                 name="imagen"
-                [(ngModel)]="imagenProducto"
+                [value]="nuevoProducto.imagenProducto"
+                [(ngModel)]="nuevoProducto.imagenProducto"
                 ></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td><label for="categoriaProducto">Categoria Producto</label></td>
             <td>
                 <select for="categoriaProducto" 
-                id="categoriaProducto" 
+                id="txtcategoriaProducto" 
                 placeholder="categoriaProducto" 
                 name="categoriaProducto"
                 [(ngModel)]="categoriaProducto">
 
                     <option [ngValue]=categoria *ngFor="let categoria of categorias;let i=index">{{categoria.getnombreCategoria}}</option>
-                    <input  
-                >
+                    <input >
                 </select>
-                </td>   
-        </tr>
-        <tr>
+                </td>
+        </tr> -->
+        <!-- <tr>
             <td><label for="marcaProducto">Marca Producto</label></td>
             <td>
-                <select type="marca" [(ngModel)]="marcaProducto" id="marca" 
+                <select type="marca" [(ngModel)]="marcaProducto" id="txtmarca" 
                 placeholder="marca" 
                 name="marcaProducto" for="marcaProducto" >
                     <option [ngValue]=marca *ngFor="let marca of marcas;let i=index">{{marca.getnombremarca}}</option>
-                    
+
                 </select>
                 </td>
-        </tr>
-        
+        </tr> -->
+
 
     </table>
-    
+
     <div class="col-s-9 boton">
         <button type="summit">Agregar</button>
     </div>
 </form>
-    <form (ngSubmit)="eliminar()" action="">
+    <form  action="">
         <div class="col-s-3 boton">
             <button type="submit" class="extra">Eliminar</button>
         </div>
@@ -105,25 +107,65 @@
                 <th>Mililitros</th>
                 <th>Descripcion</th>
                 <th>Volumen Alcohol</th>
-                <th>Categoria</th>
-                <th>Marca</th>
-                <th>Elimar</th>
+                <th>Eliminar</th>
+                <th>Editar</th>
             </tr>
-        
-            <tr *ngFor="let producto of productos,let i=index">
-                <td>{{producto.getcodproducto}}</td>
-                <td>{{producto.getnombreproducto}}</td>
-                <td>{{producto.getmililitrosproducto}}</td>
-                <td>{{producto.getdescripcionproducto}}</td>
-                <td>{{producto.getvoalcoholProducto}}</td>
-                <td>{{producto.getcategoriaproducto.getnombreCategoria}}</td>
-                <td>{{producto.getmarcaproducto.getnombremarca}}</td>
-                <td><input type="checkbox"   (click)="eliminacion.unshift(i)"></td>
+            <tr *ngFor="let producto of lista,let i=index" > <!--    -->
+                <td>{{ producto.codProducto}}</td>
+                <td>{{producto.nombreProducto}}</td>
+                <td>{{producto.mililitrosProducto}}</td>
+                <td>{{producto.descripcionProducto}}</td>
+                <td>{{producto.volalcoholProducto}}</td>
+                <td><button class="extra" (click)="eliminarProducto(producto.codProducto)">Eliminar</button></td>
+                <td><button class="extra" (click)="ProductoActu(producto)">Editar</button></td>
+                <!-- <td>{{producto.categoriaProducto}}</td>
+                <td>{{producto.marcaProducto}}</td>
+                <td><input type="checkbox"   (click)="eliminacion.unshift(i)"></td> -->
             </tr>
-        
-        
         </table>
-
     </div>
-    </form>
+</form>
+
+<h3> Editar</h3>
+<form (ngSubmit)="actualizarProductoF()" action="">
+    <table class="col-s-12">
+
+        <tr>
+            <td><label for="nombre">Nombre</label></td>
+            <td><input type="text" id="txtnombre" placeholder="Nombre" name="nombreProducto"
+                     [(ngModel)]="actualizarProducto.nombreProducto"></td>
+        </tr>
+        <tr>
+            <td><label for="mililitro">Mililitro</label></td>
+            <td><input type="number" id="txtmililitro" placeholder="militro" name="mililitros"
+                     [(ngModel)]="actualizarProducto.mililitrosProducto"></td>
+        </tr>
+
+        <tr>
+            <td><label for="descripcion">Descripcion</label></td>
+            <td><input type="text" id="txtdescripcion" placeholder="descripcion" name="descripcion"
+                     [(ngModel)]="actualizarProducto.descripcionProducto"></td>
+        </tr>
+
+        <tr>
+            <td><label for="volumenalcohol">Volumen Alcohol</label></td>
+            <td><input type="number" id="txtvolumenalcohol" placeholder="volumenalcohol" name="volumenalcohol"
+                     [(ngModel)]="actualizarProducto.volalcoholProducto"></td>
+        </tr>
+        <tr>
+            <td><label for="imagen">Direccion Imagen</label></td>
+            <td><input type="text" id="txtimagen" placeholder="imagen" name="imagen"
+                    [(ngModel)]="actualizarProducto.imagenProducto"></td>
+        </tr>
+
+        <!-- ProductoActu(nombreProducto,mililitrosProducto,descripcionProducto,volalcoholProducto,imagenProducto ) -->
+
+    </table>
+
+    <div class="col-s-9 boton">
+        <button type="summit">Guardar Datos Nuevos</button>
+    </div>
+</form>
+
+
 </div>

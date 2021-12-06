@@ -18,7 +18,6 @@ export class LoginMainComponent implements OnInit {
     return this.LoginService
   }
 
-  
 }
 
 

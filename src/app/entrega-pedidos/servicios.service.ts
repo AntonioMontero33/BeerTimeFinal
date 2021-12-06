@@ -29,7 +29,7 @@ export class ServiciosService {
   
   
   eliminar(numero:number){
-    this.listareservas.splice(numero,1);
+    reservaactiva.splice(numero,1);
   }
 
   vista(reserva:Reserva){

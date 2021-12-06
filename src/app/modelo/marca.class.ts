@@ -1,7 +1,7 @@
 export class Marca{
     constructor(
-        private codMarca:String,
-        private nombreMarca:String
+        public codMarca:String,
+        public nombreMarca:String
     ){}
 
     

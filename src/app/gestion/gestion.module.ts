@@ -21,7 +21,6 @@ import { AppRoutingModule } from '../app-routing.module';
     GestionMarcaMainComponent,
     GestionProveedorMainComponent,
     TotalGestionComponent,
-    
   ],
   exports:[
     GestionCategoriaMainComponent,
@@ -31,7 +30,7 @@ import { AppRoutingModule } from '../app-routing.module';
     TotalGestionComponent
   ],
   imports: [
-    CommonModule,FormsModule,AppRoutingModule
+    CommonModule,FormsModule,AppRoutingModule,
   ],
   providers:[
     GestionCategoriaservice,

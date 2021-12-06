@@ -1,8 +1,8 @@
 
 export class Categoria{
     constructor(
-        private codCategoria:String,
-        private nombreCategoria:String
+        public codCategoria:String,
+        public nombreCategoria:String
     ){}
     get getnombreCategoria(){
         return this.nombreCategoria
